@@ -1,0 +1,10 @@
+name: docker_practice
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pandas=2.2.2
+  - scikit-learn=1.4.2
+  - jupyter=1.1.1
+  - python=3
+  - numpy=1.26.4
