@@ -37,9 +37,6 @@ RUN apt-get update --yes && \
     xclip && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Create alternative for nano -> nano-tiny
-RUN update-alternatives --install /usr/bin/nano nano /bin/nano-tiny 10lo
-
 # macOS Rosetta virtualization creates junk directory which gets owned by root further up.
 # It'll get re-created, but as USER runner after the next directive so hopefully should not cause permission issues.
 #
