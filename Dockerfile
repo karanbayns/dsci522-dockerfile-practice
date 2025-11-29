@@ -51,4 +51,5 @@ USER ${NB_UID}
 COPY conda-lock.yml .
 
 # Install packages from the conda-lock file
-RUN conda-lock install --name base conda-lock.yml
+RUN conda install -c conda-forge conda-lock -y && \
+    conda-lock install --name base conda-lock.yml
