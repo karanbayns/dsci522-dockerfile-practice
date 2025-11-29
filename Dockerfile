@@ -47,9 +47,9 @@ RUN rm -rf "/home/${NB_USER}/.cache/"
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
 
-# Copy the conda-lock file into the container
-COPY conda-lock.yml .
+COPY conda-lock.yml /tmp/conda-lock.yml
 
-# Install packages from the conda-lock file
-RUN conda install -c conda-forge conda-lock -y && \
-    conda-lock install --name base conda-lock.yml
+RUN conda env update --quiet --file /tmp/conda-lock.yml --name base \
+    && conda clean --all -y -f \
+    && fix-permissions "${CONDA_DIR}" \
+    && fix-permissions "/home/${NB_USER}"
